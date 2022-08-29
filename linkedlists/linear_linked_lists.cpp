@@ -12,8 +12,11 @@ class LinkedLists {
         Node *head;
 
     public:
-        // Constructure
+        // Constructor
         LinkedLists(int data);
+
+        // Deconstructor
+        ~LinkedLists();
         
         // Methods
         Node* get_head();
@@ -30,6 +33,16 @@ LinkedLists::LinkedLists(int data) {
     this->head = new Node;
     this->head->data = data;
     this->head->next = NULL;
+}
+
+LinkedLists::~LinkedLists() {
+    Node *p = this->head;
+    while(this->head) {
+        this->head = this->head->next;
+        delete p;
+        p = this->head;
+    }
+    cout << "All nodes are deleted" << endl;
 }
 
 Node *LinkedLists::get_head() {

@@ -19,9 +19,10 @@ class LinkedLists {
         ~LinkedLists();
         
         // Methods
-        Node* get_head();
+        Node* init();
         Node* add_node(Node *n, int data);
-        int node_count();
+        void insert_node(int data, int index);
+        int length();
         int sum_node();
         int max_node();
         int min_node();
@@ -45,7 +46,7 @@ LinkedLists::~LinkedLists() {
     cout << "All nodes are deleted" << endl;
 }
 
-Node *LinkedLists::get_head() {
+Node *LinkedLists::init() {
     return this->head;
 }
 
@@ -59,7 +60,7 @@ Node *LinkedLists::add_node(Node *last, int data) {
 }
 
 // O(n)
-int LinkedLists::node_count() {
+int LinkedLists::length() {
     Node *p = this->head;
     int count = 0;
     while(p) {
@@ -67,6 +68,32 @@ int LinkedLists::node_count() {
         p = p->next;
     }
     return count;
+}
+
+void LinkedLists::insert_node(int data, int pos) {
+    Node *n = new Node;
+    n->data = data;
+    n->next = NULL;
+    Node *p = this->head;
+
+    if(pos == 0) {
+        n->next = this->head;
+        this->head = n;
+    } else if (pos == this->length()) {
+        while(p->next) {
+            p = p->next;
+        }
+        p->next = n;
+        p = n;
+    } else {
+        // Before move to pos need to insert first
+        for(int i=0; i<pos-1; i++) {
+            p = p->next;
+        }
+        n->next = p->next;
+        p->next = n;
+        p = n;
+    }
 }
 
 int LinkedLists::sum_node() {
@@ -134,7 +161,7 @@ void LinkedLists::display() {
 
 int main() {
     LinkedLists l(10);
-    Node* head = l.get_head();
+    Node* head = l.init();
     Node* last = head;
 
     last = l.add_node(last, 20);
@@ -143,11 +170,14 @@ int main() {
     last = l.add_node(last, 40);
 
     l.display();
-    cout << "count:\t" << l.node_count() << endl;
+    cout << "length:\t" << l.length() << endl;
     cout << "sum:\t" << l.sum_node() << endl;
     cout << "max:\t" << l.max_node() << endl;
     cout << "min:\t" << l.min_node() << endl;
     cout << "search:\t" << l.search(30) << endl;
+    l.insert_node(100, 0);
+    l.insert_node(200, 6);
+    l.insert_node(300, 2);
     l.display();
 
     return 0;

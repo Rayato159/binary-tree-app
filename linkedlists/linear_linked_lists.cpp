@@ -21,6 +21,8 @@ class LinkedLists {
         int node_count();
         int sum_node();
         int max_node();
+        int min_node();
+        int search(int key);
         void display();
 };
 
@@ -77,6 +79,37 @@ int LinkedLists::max_node() {
     return max;
 }
 
+int LinkedLists::min_node() {
+    Node *p = this->head;
+    int min = p->data;
+    p = p->next;
+    while(p) {
+        if(min > p->data) {
+            min = p->data;
+        }
+        p = p->next;
+    }
+    return min;
+}
+
+int LinkedLists::search(int key) {
+    Node *p = this->head;
+    Node *q = NULL;
+    int result = -1;
+    while(p) {
+        if(key == p->data) {
+            // Move to head
+            q->next = p->next;
+            p->next = this->head;
+            this->head = p;
+            return p->data;
+        }
+        q = p;
+        p = p->next;
+    }
+    return result;
+}
+
 void LinkedLists::display() {
     Node* p = this->head;
     while(p) {
@@ -100,6 +133,9 @@ int main() {
     cout << "count:\t" << l.node_count() << endl;
     cout << "sum:\t" << l.sum_node() << endl;
     cout << "max:\t" << l.max_node() << endl;
+    cout << "min:\t" << l.min_node() << endl;
+    cout << "search:\t" << l.search(30) << endl;
+    l.display();
 
     return 0;
 }

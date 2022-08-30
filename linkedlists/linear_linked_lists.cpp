@@ -10,6 +10,7 @@ class Node {
 class LinkedLists {
     private:
         Node *head;
+        Node *last;
 
     public:
         // Constructor
@@ -20,7 +21,7 @@ class LinkedLists {
         
         // Methods
         Node* init();
-        Node* add_node(Node *n, int data);
+        void add_node(int data);
         void insert_node(int data, int index);
         int length();
         int sum_node();
@@ -47,16 +48,22 @@ LinkedLists::~LinkedLists() {
 }
 
 Node *LinkedLists::init() {
+    this->head = NULL;
     return this->head;
 }
 
 // O(1)
-Node *LinkedLists::add_node(Node *last, int data) {
+void LinkedLists::add_node(int data) {
     Node *t = new Node;
     t->data = data;
     t->next = NULL;
-    last->next = t;
-    return t;
+
+    if(this->head == NULL) {
+        this->head = this->last = t;
+    } else {
+        this->last->next = t;
+        this->last = t;
+    }
 }
 
 // O(n)
@@ -79,13 +86,7 @@ void LinkedLists::insert_node(int data, int pos) {
     if(pos == 0) {
         n->next = this->head;
         this->head = n;
-    } else if (pos == this->length()) {
-        while(p->next) {
-            p = p->next;
-        }
-        p->next = n;
-        p = n;
-    } else {
+    } else if(pos < this->length()) {
         // Before move to pos need to insert first
         for(int i=0; i<pos-1; i++) {
             p = p->next;
@@ -164,10 +165,10 @@ int main() {
     Node* head = l.init();
     Node* last = head;
 
-    last = l.add_node(last, 20);
-    last = l.add_node(last, 50);
-    last = l.add_node(last, 30);
-    last = l.add_node(last, 40);
+    l.add_node(20);
+    l.add_node(50);
+    l.add_node(30);
+    l.add_node(40);
 
     l.display();
     cout << "length:\t" << l.length() << endl;
@@ -176,7 +177,6 @@ int main() {
     cout << "min:\t" << l.min_node() << endl;
     cout << "search:\t" << l.search(30) << endl;
     l.insert_node(100, 0);
-    l.insert_node(200, 6);
     l.insert_node(300, 2);
     l.display();
 

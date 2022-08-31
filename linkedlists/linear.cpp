@@ -111,13 +111,14 @@ void LinkedLists::delete_n(int pos) {
     if(pos == 0) {
         this->head = this->head->next;
         delete p;
-    } else if(pos == this->length()-1) {
+    } else if(pos == this->length() - 1) {
         for(int i=0; i<pos; i++) {
             q = p;
             p = p->next;
         }
         q->next = NULL;
         this->last = q;
+        delete p;
     } else {
         for(int i=0; i<pos; i++) {
             q = p;
@@ -149,16 +150,18 @@ void LinkedLists::display() {
 
 int main() {
     LinkedLists l;
-    l.insert_last(10);
-    l.insert_last(20);
-    l.insert_last(30);
-    l.insert_last(40);
-    l.insert_last(50);
+    l.insert_last(10); // 0
+    l.insert_last(20); // 1
+    l.insert_last(30); // 2
+    l.insert_last(40); // 3
+    l.insert_last(50); // 4
     l.display();
     // cout << l.length() << endl;
     // cout << l.sum_node() << endl;
     // cout << "key " << l.search(40) << endl;
     l.delete_all();
+    l.display();
+    l.insert_last(20);
     l.display();
     return 0;
 }

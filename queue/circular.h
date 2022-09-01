@@ -73,12 +73,4 @@ void Queue::display() {
     std::cout << std::endl;
 }
 
-int receive_queue_size(char **argv) {
-    int size = std::stoi(argv[2]);
-    if((std::string)argv[1] == "-size") {
-        return size;
-    }
-    return -1;
-}
-
 #endif

@@ -55,16 +55,4 @@ void LinkedLists::display_reverse() {
     std::cout << std::endl;
 }
 
-int main() {
-    LinkedLists l;
-    l.insert_last(10);
-    l.insert_last(20);
-    l.insert_last(30);
-    l.insert_last(40);
-    l.insert_last(50);
-    l.display_forward();
-    l.display_reverse();
-    return 0;
-}
-
 #endif

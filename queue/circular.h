@@ -3,8 +3,7 @@
 #define circular
 
 #include <iostream>
-#include <cstdio>
-#include <string>
+#include <cstdlib>
 
 class Queue {
     public:

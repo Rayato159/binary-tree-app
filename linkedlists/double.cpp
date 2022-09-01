@@ -1,5 +1,8 @@
+#ifndef double
+#define double
+
 #include <iostream>
-using namespace std;
+#include <cstdlib>
 
 class Node {
     public:
@@ -40,19 +43,19 @@ void LinkedLists::insert_last(int data) {
 void LinkedLists::display_forward() {
     Node *p = this->head;
     while(p) {
-        cout << p->data << " " << flush;
+        std::cout << p->data << " " << std::flush;
         p = p->next;
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 void LinkedLists::display_reverse() {
     Node *p = this->last;
     while(p) {
-        cout << p->data << " " << flush;
+        std::cout << p->data << " " << std::flush;
         p = p->prev;
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 int main() {
@@ -66,3 +69,5 @@ int main() {
     l.display_reverse();
     return 0;
 }
+
+#endif

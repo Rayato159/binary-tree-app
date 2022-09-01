@@ -1,9 +1,5 @@
-// circular.h
-#ifndef circular
-#define circular
-
-#include <iostream>
-#include <cstdlib>
+#ifndef Q_Circular_h
+#define Q_Circular_h
 
 class Queue {
     public:

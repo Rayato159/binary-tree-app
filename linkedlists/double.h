@@ -1,8 +1,5 @@
-#ifndef double
-#define double
-
-#include <iostream>
-#include <cstdlib>
+#ifndef L_Double_h
+#define L_Double_h
 
 class Node {
     public:

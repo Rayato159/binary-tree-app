@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "../queue/circular.h"
+#include "../linkedlists/double.h"
 
 using namespace std;
 

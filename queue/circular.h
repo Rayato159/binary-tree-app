@@ -1,6 +1,6 @@
-// circular_queue.h.h
-#ifndef circular_queue
-#define circular_queue
+// circular.h
+#ifndef circular
+#define circular
 
 #include <iostream>
 #include <cstdio>

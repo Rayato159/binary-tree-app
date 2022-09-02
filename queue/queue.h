@@ -20,6 +20,7 @@ class Queue {
     public:
         // Constructor
         Queue();
+        ~Queue();
 
         // Methods
         void enqueue(Node *data);
@@ -41,6 +42,11 @@ Queue::Queue() {
     this->Q[0] = t;
 }
 
+Queue::~Queue() {
+    delete this->Q;
+    std::cout << "queue has been deleted" << std::endl;
+}
+
 void Queue::enqueue(Node *data) {
     if(!this->is_full()) {
         this->Q[this->rear] = data;
@@ -49,7 +55,7 @@ void Queue::enqueue(Node *data) {
 }
 
 Node *Queue::dequeue() {
-    Node *t;
+    Node *t = NULL;
     if(!this->is_empty()) {
         t = this->Q[this->front];
         this->front = this->front % this->size + 1;

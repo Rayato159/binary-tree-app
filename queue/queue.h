@@ -19,8 +19,7 @@ class Queue {
 
     public:
         // Constructor
-        Queue(){};
-        Queue(int size);
+        Queue();
 
         // Methods
         void enqueue(Node *data);
@@ -30,9 +29,9 @@ class Queue {
         void display();
 };
 
-Queue::Queue(int size) {
-    this->data = new Node*[size + 1];
-    this->size = size + 1;
+Queue::Queue() {
+    this->data = new Node*[1001];
+    this->size = 1001;
     this->front = 1;
     this->rear = 1;
 

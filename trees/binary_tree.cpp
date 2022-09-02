@@ -10,9 +10,10 @@ class BinaryTree {
         Queue q;
 
     public:
+        // Constructor
         BinaryTree();
 
-        void create_tree();
+        // Methods
         Node *get_root();
         void preorder(Node *p);
         void inorder(Node *p);
@@ -20,11 +21,6 @@ class BinaryTree {
 };
 
 BinaryTree::BinaryTree() {
-    Queue t(100);
-    this->q = t;
-}
-
-void BinaryTree::create_tree() {
     Node *p, *t;
     this->root = new Node;
     this->root->left = this->root->right = NULL;
@@ -96,7 +92,6 @@ void BinaryTree::postorder(Node *p) {
 
 int main() {
     BinaryTree bt;
-    bt.create_tree();
     Node *t = bt.get_root();
 
     cout << "preorder:" << endl;

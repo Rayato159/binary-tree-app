@@ -51,11 +51,13 @@ void Queue::enqueue(Node *data) {
 }
 
 Node *Queue::dequeue() {
-    Node *t = NULL;
-    Node *d = NULL;
+    Node *t = new Node;
+    t->data = 0;
+    t->next = NULL;
+    t->prev = NULL;
     if(!this->is_empty()) {
         *t = this->data[this->front];
-        this->data[this->front] = *d;
+        this->data[this->front] = *t;
         this->front % this->size + 1;
     }
     return t;

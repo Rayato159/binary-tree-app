@@ -1,6 +1,8 @@
 #ifndef Q_Circular_h
 #define Q_Circular_h
 
+#include <iostream>
+
 class Queue {
     public:
         int *data;
@@ -9,6 +11,7 @@ class Queue {
         int rear;
 
     // Constructor
+    Queue(){};
     Queue(int size);
     
     // Method

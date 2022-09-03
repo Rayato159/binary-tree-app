@@ -145,9 +145,9 @@ int BinaryTree::leaf_node(Node *p) {
     }
 
     if(!p->left && !p->right) {
-        return leaf_node(p->left) + leaf_node(p->right) + 1;
+        return this->leaf_node(p->left) + this->leaf_node(p->right) + 1;
     } else {
-        return leaf_node(p->left) + leaf_node(p->right);
+        return this->leaf_node(p->left) + this->leaf_node(p->right);
     }
 }
 

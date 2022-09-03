@@ -17,7 +17,7 @@ class BinaryTree {
         Node *get_root();
         int node_count(Node *p);
         int height(Node *p);
-        int leaf_node();
+        int leaf_node(Node *p);
         void preorder(Node *p);
         void inorder(Node *p);
         void postorder(Node *p);
@@ -139,26 +139,16 @@ int BinaryTree::height(Node *p) {
     }
 }
 
-int BinaryTree::leaf_node() {
-    Node *p = this->root;
-    Queue tq;
-    int count = 0;
-
-    tq.enqueue(p);
-    while(!tq.is_empty()) {
-        p = tq.dequeue();
-
-        if(p->left) {
-            tq.enqueue(p->left);
-        }
-        if(p->right) {
-            tq.enqueue(p->right);
-        }
-        if(!p->left && !p->right) {
-            count++;
-        }
+int BinaryTree::leaf_node(Node *p) {
+    if(!p) {
+        return 0;
     }
-    return count;
+
+    if(!p->left && !p->right) {
+        return leaf_node(p->left) + leaf_node(p->right) + 1;
+    } else {
+        return leaf_node(p->left) + leaf_node(p->right);
+    }
 }
 
 int main() {
@@ -166,7 +156,7 @@ int main() {
     Node *t = bt.get_root();
 
     cout << "numbers of node: " << bt.node_count(t) << endl;
-    cout << "number of leaf nodes: " << bt.leaf_node() << endl;
+    cout << "number of leaf nodes: " << bt.leaf_node(t) << endl;
     cout << "height of tree: " << bt.height(t) << endl;
     cout << endl;
 

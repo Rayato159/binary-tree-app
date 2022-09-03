@@ -15,9 +15,13 @@ class BinaryTree {
 
         // Methods
         Node *get_root();
+        int node_count(Node *p);
+        int height(Node *p);
+        int leaf_node();
         void preorder(Node *p);
         void inorder(Node *p);
         void postorder(Node *p);
+        void levelorder();
 };
 
 BinaryTree::BinaryTree() {
@@ -32,7 +36,7 @@ BinaryTree::BinaryTree() {
     this->root->data = x;
     this->q.enqueue(this->root);
 
-    while(!q.is_empty()) {
+    while(!this->q.is_empty()) {
         p = this->q.dequeue();
         printf("p: %p\n", p);
         printf("left child of %d: ", p->data);
@@ -90,9 +94,81 @@ void BinaryTree::postorder(Node *p) {
     }
 }
 
+void BinaryTree::levelorder() {
+    Node *p = this->root;
+
+    cout << p->data << " " << flush;
+    this->q.enqueue(p);
+
+    while(!this->q.is_empty()) {
+        p = this->q.dequeue();
+
+        if(p->left) {
+            cout << p->left->data << " " << flush;
+            q.enqueue(p->left);
+        }
+
+        if(p->right) {
+            cout << p->right->data << " " << flush;
+            q.enqueue(p->right);
+        }
+    }
+    cout << endl;
+}
+
+int BinaryTree::node_count(Node *p) {
+    while(p) {
+        return this->node_count(p->left) + this->node_count(p->right) + 1;
+    }
+    return 0;
+}
+
+int BinaryTree::height(Node *p) {
+    int x, y = 0;
+
+    if(!p) {
+        return 0;
+    }
+    x = this->height(p->left);
+    y = this->height(p->right);
+
+    if(x > y) {
+        return x + 1;
+    } else {
+        return y + 1;
+    }
+}
+
+int BinaryTree::leaf_node() {
+    Node *p = this->root;
+    Queue tq;
+    int count = 0;
+
+    tq.enqueue(p);
+    while(!tq.is_empty()) {
+        p = tq.dequeue();
+
+        if(p->left) {
+            tq.enqueue(p->left);
+        }
+        if(p->right) {
+            tq.enqueue(p->right);
+        }
+        if(!p->left && !p->right) {
+            count++;
+        }
+    }
+    return count;
+}
+
 int main() {
     BinaryTree bt;
     Node *t = bt.get_root();
+
+    cout << "numbers of node: " << bt.node_count(t) << endl;
+    cout << "number of leaf nodes: " << bt.leaf_node() << endl;
+    cout << "height of tree: " << bt.height(t) << endl;
+    cout << endl;
 
     cout << "preorder:" << endl;
     bt.preorder(t);
@@ -105,5 +181,10 @@ int main() {
     cout << "postorder:" << endl;
     bt.postorder(t);
     cout << endl;
+
+    cout << "levelorder:" << endl;
+    bt.levelorder();
+    cout << endl;
+
     return 0;
 }

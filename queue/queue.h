@@ -65,7 +65,7 @@ Node *Queue::dequeue() {
 
 bool Queue::is_empty() {
     if(this->front == this->rear) {
-        printf("queue is empty\n\n");
+        // printf("queue is empty");
         return true;
     }
     return false;
@@ -73,7 +73,7 @@ bool Queue::is_empty() {
 
 bool Queue::is_full() {
     if(this->rear % this->size + 1 == this->front) {
-        printf("queue is full\n\n");
+        // printf("queue is full");
         return true;
     }
     return false;

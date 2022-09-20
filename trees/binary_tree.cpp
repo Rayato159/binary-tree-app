@@ -1,6 +1,8 @@
 #include <iostream>
 
 #include "../queue/queue.h"
+#include "../stack/stack.h"
+#include "./node.h"
 
 using namespace std;
 

@@ -17,7 +17,10 @@ class BinaryTree {
         Node *get_root();
 
         // Traversal
+        int count(Node *t);
+        int height(Node *t);
         void preorder(Node *p);
+        void preorder_stack();
         void inorder(Node *p);
         void postorder(Node *p);
 };
@@ -75,6 +78,31 @@ BinaryTree::BinaryTree(Queue q) {
     }
 }
 
+int BinaryTree::count(Node *t) {
+    int l, r;
+    if(t) {
+        l = this->count(t->left);
+        r = this->count(t->right);
+        return l + r + 1;
+    } else {
+        return 0;
+    }
+}
+
+int BinaryTree::height(Node *t) {
+    int l, r;
+    if(t) {
+        l = this->height(t->left);
+        r = this->height(t->right);
+        if (l > r) {
+            return l + 1;
+        } else {
+            return r + 1;
+        }
+    }
+    return -1;
+}
+
 Node *BinaryTree::get_root() {
     return this->root;
 }
@@ -85,6 +113,24 @@ void BinaryTree::preorder(Node *p) {
         cout << p->data << " " << flush;
         this->preorder(p->left);
         this->preorder(p->right);
+    }
+}
+
+// Stack
+void BinaryTree::preorder_stack() {
+    Stack s(100);
+    Node *t = this->root;
+
+    while(!s.is_empty() || t) {
+        if(t) {
+            cout << t->data << " " << flush;
+            s.push(t);
+            t = t->left;
+        } else {
+            t = s.pop();
+            t = t->right;
+        }
+
     }
 }
 
@@ -110,12 +156,7 @@ int main() {
 
     Node *p = bt.get_root();
 
-    bt.preorder(p);
-    cout << endl;
-    bt.inorder(p);
-    cout << endl;
-    bt.postorder(p);
-    cout << endl;
+    cout << bt.height(p) << endl;
 
     return 0;
 }

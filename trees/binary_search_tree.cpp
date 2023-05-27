@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+using namespace std;
 
 class Node {
     public:
@@ -53,7 +53,7 @@ void BinarySearchTree::insert(int value, Node* node) {
             this->insert(value, node->rightChild);
         }
     } else {
-        std::cout << "Value already exists in the tree." << std::endl;
+        cout << "Value already exists in the tree." << endl;
     }
 }
 
@@ -64,7 +64,7 @@ void BinarySearchTree::printTree() {
 void BinarySearchTree::printTree(Node* node) {
     if (node) {
         this->printTree(node->leftChild);
-        std::cout << node->value << " ";
+        cout << node->value << " ";
         this->printTree(node->rightChild);
     }
 }
@@ -88,15 +88,16 @@ bool BinarySearchTree::search(int key, Node* node) {
 int main() {
     BinarySearchTree t;
 
-    std::vector<int> v = {10, 20, 4, 50, 7};
+    int a[] = {10, 20, 4, 50, 7};
+    int size = sizeof(a)/sizeof(a[0]);
 
-    for(int i : v) {
-        t.insert(i);
+    for(int i=0; i < size; i++) {
+        t.insert(a[i]);
     }
-
-    std::cout << t.search(50) << std::endl;
-
     t.printTree();
+    cout << endl;
+
+    cout << t.search(50) << endl;
 
     return 0;
 }

@@ -69,12 +69,7 @@ void BinarySearchTree::printTree(Node* node) {
 }
 
 bool BinarySearchTree::search(int key) {
-    if (this->root) {
-        return search(key, this->root);
-    } else {
-        std::cout << "Root node is NULL" << std::endl;
-        return false;
-    }
+    return search(key, this->root);
 }
 
 bool BinarySearchTree::search(int key, Node* node) {

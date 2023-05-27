@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 class Node {
     public:
@@ -87,11 +88,11 @@ bool BinarySearchTree::search(int key, Node* node) {
 int main() {
     BinarySearchTree t;
 
-    t.insert(10);
-    t.insert(20);
-    t.insert(4);
-    t.insert(50);
-    t.insert(7);
+    std::vector<int> v = {10, 20, 4, 50, 7};
+
+    for(int i : v) {
+        t.insert(i);
+    }
 
     std::cout << t.search(50) << std::endl;
 

@@ -57,9 +57,6 @@ void BinarySearchTree::insert(int value, Node* node) {
 }
 
 void BinarySearchTree::printTree() {
-    if (!this->root) {
-        std::cout << "root is null" << std::endl;
-    }
     this->printTree(this->root);
 }
 

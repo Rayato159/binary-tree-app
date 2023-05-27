@@ -1,24 +1,24 @@
 #include <iostream>
 
 class Node {
-public:
-    int value;
-    Node* leftChild;
-    Node* rightChild;
+    public:
+        int value;
+        Node* leftChild;
+        Node* rightChild;
 };
 
 class BinarySearchTree {
-private:
-    Node* root;
+    private:
+        Node* root;
 
-public:
-    BinarySearchTree() { this->root = NULL; };
-    void insert(int value);
-    void insert(int value, Node* node);
-    void printTree();
-    void printTree(Node* node);
-    bool search(int key);
-    bool search(int key, Node* node);
+    public:
+        BinarySearchTree() { this->root = NULL; };
+        void insert(int value);
+        void insert(int value, Node* node);
+        void printTree();
+        void printTree(Node* node);
+        bool search(int key);
+        bool search(int key, Node* node);
 };
 
 void BinarySearchTree::insert(int value) {
@@ -57,6 +57,9 @@ void BinarySearchTree::insert(int value, Node* node) {
 }
 
 void BinarySearchTree::printTree() {
+    if (!this->root) {
+        std::cout << "root is null" << std::endl;
+    }
     this->printTree(this->root);
 }
 
